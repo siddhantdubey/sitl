@@ -1,5 +1,4 @@
 import Parser from "rss-parser";
-
 export default async function handler(req: any, res: any) {
     const parser = new Parser();
     const url = req.query.url;

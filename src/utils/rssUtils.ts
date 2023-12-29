@@ -1,4 +1,5 @@
-import { Sources } from "~/pages";
+import type { Sources } from "~/pages";
+
 const getTwitterSourceRSS = async (sourceName: string) => {
     const url = `https://nitter.1d4.us/${sourceName}/rss`;
     const response = await fetch(`/api/getRSSFeed?url=${url}`);

@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Keep Up To Date</title>
+        <title>Quick News</title>
         <meta
           name="description"
           content="Keep up to date with your favorite twitter accounts and subreddits."
@@ -156,7 +156,7 @@ export default function Home() {
                   onChange={(e) => setNewSource(e.target.value)}
                 />
                 <Button
-                  className="aspect-square rounded-[.5em] bg-stone-700 text-white"
+                  className="aspect-square rounded-[.5em] bg-stone-700 px-3 text-white"
                   type="submit"
                 >
                   ⏎

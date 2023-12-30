@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { Button } from "@/components/ui/button";
-import { CardTitle, CardHeader, Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect, FormEvent } from "react";
 import { stringify } from "querystring";
 
@@ -44,7 +42,7 @@ export default function Home() {
             "https://images.squarespace-cdn.com/content/v1/5c5554d316b64061c6f8a20d/1630949829757-WXNOUZ8R4QQCXMIY4YMG/What-Is-The-Reddit-Logo-Called.png",
           sourceType: currentSource,
         },
-      ]); // Each source now has a name and an image
+      ]);
       setNewSource("");
     }
   };
@@ -123,13 +121,12 @@ export default function Home() {
                   onChange={(e) => setOpenAIKey(e.target.value)}
                 />
               </div>
-              <Button
+              <button
                 className="rounded-[.5em] bg-stone-700 text-white"
-                variant="outline"
                 onClick={() => getSummary()}
               >
                 Summarize
-              </Button>
+              </button>
             </div>
             <div className="flex flex-col gap-2">
               <form
@@ -155,12 +152,12 @@ export default function Home() {
                   value={newSource}
                   onChange={(e) => setNewSource(e.target.value)}
                 />
-                <Button
+                <button
                   className="aspect-square rounded-[.5em] bg-stone-700 px-3 text-white"
                   type="submit"
                 >
                   ⏎
-                </Button>
+                </button>
               </form>
 
               <div className="flex h-min min-h-24 flex-col gap-2 rounded-[.5em] bg-neutral-200 p-2 md:h-full">
@@ -186,12 +183,12 @@ export default function Home() {
                           <div className="text-lg">{source.name}</div>
                         </div>
 
-                        <Button
+                        <button
                           className="aspect-square rounded-[.5em] bg-stone-700 p-2 text-white"
                           onClick={() => deleteSource(source)}
                         >
                           <DeleteIcon />
-                        </Button>
+                        </button>
                       </div>
                     </div>
                   ))

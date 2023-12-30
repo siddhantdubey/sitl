@@ -185,11 +185,10 @@ export default function Home() {
                       </div>
 
                       <Button
-                        size="icon"
-                        variant="ghost"
+                        className="aspect-square rounded-[.5em] bg-stone-700 p-2 text-white"
                         onClick={() => deleteSource(source)}
                       >
-                        <DeleteIcon className="aspect-square h-8 text-stone-700 hover:text-stone-400" />
+                        <DeleteIcon />
                       </Button>
                     </div>
                   </div>
@@ -198,9 +197,7 @@ export default function Home() {
             </div>
           </div>
           <div className="h-full overflow-y-scroll rounded-[.5em] bg-stone-200 p-4 ">
-            <div className="font-normal">
-              {summary ? summary : "Summary will appear here..."}
-            </div>
+            <div className="font-normal">{summary}</div>
           </div>
         </div>
       </div>
@@ -222,7 +219,7 @@ function DeleteIcon({ className }: DeleteIconProps) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >

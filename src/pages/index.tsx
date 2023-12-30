@@ -105,26 +105,20 @@ export default function Home() {
                 Quick News
               </div>
               <div className="flex w-full gap-2 rounded-[.5em] bg-neutral-200 p-2">
-                <select
-                  onChange={(e) => setModelType(e.target.value)}
-                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
-                >
+                <select onChange={(e) => setModelType(e.target.value)}>
                   <option value="gpt-4">Select Model Type</option>
                   <option value="gpt-4">GPT 4</option>
                   <option value="gpt-3">GPT 3.5</option>
                 </select>
                 <input
-                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
+                  className="w-full p-2 md:w-min"
                   placeholder="Enter OpenAI Key"
                   type="text"
                   value={openAIKey}
                   onChange={(e) => setOpenAIKey(e.target.value)}
                 />
               </div>
-              <button
-                className="rounded-[.5em] bg-stone-700 text-white"
-                onClick={() => getSummary()}
-              >
+              <button className="h-10" onClick={() => getSummary()}>
                 Summarize
               </button>
             </div>
@@ -133,16 +127,13 @@ export default function Home() {
                 className="flex w-min gap-2 rounded-[.5em] bg-neutral-200 p-2"
                 onSubmit={addSource}
               >
-                <select
-                  onChange={(e) => setCurrentSource(e.target.value)}
-                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
-                >
+                <select onChange={(e) => setCurrentSource(e.target.value)}>
                   <option value="twitter">Select Source Type</option>
                   <option value="twitter">Twitter</option>
                   <option value="reddit">Reddit</option>
                 </select>
                 <input
-                  className="appearance-none rounded-[.5em] bg-neutral-100 text-center focus:outline-none"
+                  className=""
                   placeholder={`Enter ${
                     currentSource === "twitter"
                       ? "Twitter handle"
@@ -152,12 +143,7 @@ export default function Home() {
                   value={newSource}
                   onChange={(e) => setNewSource(e.target.value)}
                 />
-                <button
-                  className="aspect-square rounded-[.5em] bg-stone-700 px-3 text-white"
-                  type="submit"
-                >
-                  ⏎
-                </button>
+                <button className="aspect-square px-3">⏎</button>
               </form>
 
               <div className="flex h-min min-h-24 flex-col gap-2 rounded-[.5em] bg-neutral-200 p-2 md:h-full">
@@ -184,7 +170,7 @@ export default function Home() {
                         </div>
 
                         <button
-                          className="aspect-square rounded-[.5em] bg-stone-700 p-2 text-white"
+                          className="aspect-square p-2"
                           onClick={() => deleteSource(source)}
                         >
                           <DeleteIcon />

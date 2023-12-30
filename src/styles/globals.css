@@ -3,4 +3,13 @@
 @tailwind utilities;
 
 button {
+  @apply rounded-[.5em] bg-stone-700 text-white;
+}
+
+input {
+  @apply appearance-none rounded-[.5em] bg-neutral-100 text-center focus:outline-none;
+}
+
+select {
+  @apply appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none;
 }

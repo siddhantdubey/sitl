@@ -107,13 +107,6 @@ export default function Home() {
                 Quick News
               </div>
               <div className="flex w-min gap-2 rounded-[.5em] bg-neutral-200 p-2">
-                <input
-                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
-                  placeholder="Enter OpenAI Key"
-                  type="text"
-                  value={openAIKey}
-                  onChange={(e) => setOpenAIKey(e.target.value)}
-                />
                 <select
                   onChange={(e) => setModelType(e.target.value)}
                   className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
@@ -122,6 +115,13 @@ export default function Home() {
                   <option value="gpt-4">GPT 4</option>
                   <option value="gpt-3">GPT 3.5</option>
                 </select>
+                <input
+                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
+                  placeholder="Enter OpenAI Key"
+                  type="text"
+                  value={openAIKey}
+                  onChange={(e) => setOpenAIKey(e.target.value)}
+                />
               </div>
               <Button
                 className="rounded-[.5em] bg-stone-700 text-white"

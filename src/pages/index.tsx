@@ -14,7 +14,7 @@ export type Sources = Source[];
 
 export default function Home() {
   const [currentSource, setCurrentSource] = useState<string>("twitter");
-  const [modelType, setModelType] = useState<string>("gpt-4");
+  const [modelType, setModelType] = useState<string>("gpt-3.5-turbo");
 
   const [sources, setSources] = useState<Sources>([]);
   const [summary, setSummary] = useState<string>("");
@@ -83,7 +83,7 @@ export default function Home() {
       }
     }
     const response = await fetch(
-      `/api/getSummary?prompt=${prompt}&openAIKey=${openAIKey}`,
+      `/api/getSummary?prompt=${prompt}&openAIKey=${openAIKey}&modelType=${modelType}`,
     );
     const data = await response.json();
     setSummary(data.summary);
@@ -118,9 +118,9 @@ export default function Home() {
                   onChange={(e) => setModelType(e.target.value)}
                   className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
                 >
-                  <option value="gpt-4">Select Model Type</option>
-                  <option value="gpt-4">GPT 4</option>
-                  <option value="gpt-3">GPT 3.5</option>
+                  <option value="gpt-3.5-turbo">Select Model Type (only 3.5 works rn)</option>
+                  <option value="gpt-4-1106-preview">GPT 4</option>
+                  <option value="gpt-3.5-turbo">GPT 3.5</option>
                 </select>
               </div>
               <Button

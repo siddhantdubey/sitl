@@ -99,14 +99,14 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex h-screen justify-center py-2">
+      <div className="flex justify-center py-2 md:h-screen">
         <div className="flex w-min flex-col gap-2">
-          <div className="flex w-min gap-2">
-            <div className="flex flex-col gap-2">
+          <div className="flex w-min flex-col gap-2 md:flex-row">
+            <div className="flex flex-col gap-2 md:w-1/2">
               <div className="flex aspect-square w-full items-center rounded-2xl bg-stone-700 text-center text-8xl font-bold text-white">
                 Quick News
               </div>
-              <div className="flex w-min gap-2 rounded-[.5em] bg-neutral-200 p-2">
+              <div className="flex w-full gap-2 rounded-[.5em] bg-neutral-200 p-2">
                 <select
                   onChange={(e) => setModelType(e.target.value)}
                   className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
@@ -162,42 +162,53 @@ export default function Home() {
                   ⏎
                 </Button>
               </form>
-              <div className="h-full rounded-[.5em] bg-neutral-200 p-2">
-                {sources.map((source) => (
-                  <div
-                    className="rounded-[.5em] bg-neutral-100"
-                    key={source.name}
-                  >
-                    <div className="flex flex-row items-center justify-between p-3">
-                      <div className="flex flex-row items-center">
-                        <img
-                          alt={source.name}
-                          className="mr-2 rounded-full"
-                          height="40"
-                          src={source.image}
-                          style={{
-                            aspectRatio: "40/40",
-                            objectFit: "cover",
-                          }}
-                          width="40"
-                        />
-                        <div className="text-lg">{"@" + source.name}</div>
-                      </div>
 
-                      <Button
-                        className="aspect-square rounded-[.5em] bg-stone-700 p-2 text-white"
-                        onClick={() => deleteSource(source)}
-                      >
-                        <DeleteIcon />
-                      </Button>
+              <div className="flex h-min min-h-24 flex-col gap-2 rounded-[.5em] bg-neutral-200 p-2 md:h-full">
+                {sources.length > 0 ? (
+                  sources.map((source) => (
+                    <div
+                      className="rounded-[.5em] bg-neutral-100"
+                      key={source.name}
+                    >
+                      <div className="flex flex-row items-center justify-between p-3">
+                        <div className="flex flex-row items-center">
+                          <img
+                            alt={source.name}
+                            className="mr-2 rounded-full"
+                            height="40"
+                            src={source.image}
+                            style={{
+                              aspectRatio: "40/40",
+                              objectFit: "cover",
+                            }}
+                            width="40"
+                          />
+                          <div className="text-lg">{source.name}</div>
+                        </div>
+
+                        <Button
+                          className="aspect-square rounded-[.5em] bg-stone-700 p-2 text-white"
+                          onClick={() => deleteSource(source)}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      </div>
                     </div>
+                  ))
+                ) : (
+                  <div className="text-neutral-400">
+                    Sources will appear here
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>
-          <div className="h-full overflow-y-scroll rounded-[.5em] bg-stone-200 p-4 ">
-            <div className="font-normal">{summary}</div>
+          <div className="h-96 min-h-64 rounded-[.5em] bg-stone-200 p-4 md:h-full ">
+            {summary ? (
+              <div className="font-normal">{summary}</div>
+            ) : (
+              <div className="text-neutral-400">Summary will appear here</div>
+            )}
           </div>
         </div>
       </div>

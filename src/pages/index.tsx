@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { Button } from "@/components/ui/button";
-import { CardTitle, CardHeader, Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect, FormEvent } from "react";
 import { stringify } from "querystring";
 
@@ -44,7 +42,7 @@ export default function Home() {
             "https://images.squarespace-cdn.com/content/v1/5c5554d316b64061c6f8a20d/1630949829757-WXNOUZ8R4QQCXMIY4YMG/What-Is-The-Reddit-Logo-Called.png",
           sourceType: currentSource,
         },
-      ]); // Each source now has a name and an image
+      ]);
       setNewSource("");
     }
   };
@@ -92,60 +90,50 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Keep Up To Date</title>
+        <title>Quick News</title>
         <meta
           name="description"
           content="Keep up to date with your favorite twitter accounts and subreddits."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex h-screen justify-center py-2">
+      <div className="flex justify-center py-2 md:h-screen">
         <div className="flex w-min flex-col gap-2">
-          <div className="flex w-min gap-2">
-            <div className="flex flex-col gap-2">
+          <div className="flex w-min flex-col gap-2 md:flex-row">
+            <div className="flex flex-col gap-2 md:w-1/2">
               <div className="flex aspect-square w-full items-center rounded-2xl bg-stone-700 text-center text-8xl font-bold text-white">
                 Quick News
               </div>
-              <div className="flex w-min gap-2 rounded-[.5em] bg-neutral-200 p-2">
+              <div className="flex w-full gap-2 rounded-[.5em] bg-neutral-200 p-2">
+                <select onChange={(e) => setModelType(e.target.value)}>
+                  <option value="gpt-4">Select Model Type</option>
+                  <option value="gpt-4">GPT 4</option>
+                  <option value="gpt-3">GPT 3.5</option>
+                </select>
                 <input
-                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
+                  className="w-full p-2 md:w-min"
                   placeholder="Enter OpenAI Key"
                   type="text"
                   value={openAIKey}
                   onChange={(e) => setOpenAIKey(e.target.value)}
                 />
-                <select
-                  onChange={(e) => setModelType(e.target.value)}
-                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
-                >
-                  <option value="gpt-3.5-turbo">Select Model Type (only 3.5 works rn)</option>
-                  <option value="gpt-4-1106-preview">GPT 4</option>
-                  <option value="gpt-3.5-turbo">GPT 3.5</option>
-                </select>
               </div>
-              <Button
-                className="rounded-[.5em] bg-stone-700 text-white"
-                variant="outline"
-                onClick={() => getSummary()}
-              >
+              <button className="h-10" onClick={() => getSummary()}>
                 Summarize
-              </Button>
+              </button>
             </div>
             <div className="flex flex-col gap-2">
               <form
                 className="flex w-min gap-2 rounded-[.5em] bg-neutral-200 p-2"
                 onSubmit={addSource}
               >
-                <select
-                  onChange={(e) => setCurrentSource(e.target.value)}
-                  className="appearance-none rounded-[.5em] bg-neutral-100 p-2 text-center focus:outline-none"
-                >
+                <select onChange={(e) => setCurrentSource(e.target.value)}>
                   <option value="twitter">Select Source Type</option>
                   <option value="twitter">Twitter</option>
                   <option value="reddit">Reddit</option>
                 </select>
                 <input
-                  className="appearance-none rounded-[.5em] bg-neutral-100 text-center focus:outline-none"
+                  className=""
                   placeholder={`Enter ${
                     currentSource === "twitter"
                       ? "Twitter handle"
@@ -155,52 +143,55 @@ export default function Home() {
                   value={newSource}
                   onChange={(e) => setNewSource(e.target.value)}
                 />
-                <Button
-                  className="aspect-square rounded-[.5em] bg-stone-700 text-white"
-                  type="submit"
-                >
-                  ⏎
-                </Button>
+                <button className="aspect-square px-3">⏎</button>
               </form>
-              <div className="h-full rounded-[.5em] bg-neutral-200 p-2">
-                {sources.map((source) => (
-                  <div
-                    className="rounded-[.5em] bg-neutral-100"
-                    key={source.name}
-                  >
-                    <div className="flex flex-row items-center justify-between p-3">
-                      <div className="flex flex-row items-center">
-                        <img
-                          alt={source.name}
-                          className="mr-2 rounded-full"
-                          height="40"
-                          src={source.image}
-                          style={{
-                            aspectRatio: "40/40",
-                            objectFit: "cover",
-                          }}
-                          width="40"
-                        />
-                        <div className="text-lg">{"@" + source.name}</div>
-                      </div>
 
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        onClick={() => deleteSource(source)}
-                      >
-                        <DeleteIcon className="aspect-square h-8 text-stone-700 hover:text-stone-400" />
-                      </Button>
+              <div className="flex h-min min-h-24 flex-col gap-2 rounded-[.5em] bg-neutral-200 p-2 md:h-full">
+                {sources.length > 0 ? (
+                  sources.map((source) => (
+                    <div
+                      className="rounded-[.5em] bg-neutral-100"
+                      key={source.name}
+                    >
+                      <div className="flex flex-row items-center justify-between p-3">
+                        <div className="flex flex-row items-center">
+                          <img
+                            alt={source.name}
+                            className="mr-2 rounded-full"
+                            height="40"
+                            src={source.image}
+                            style={{
+                              aspectRatio: "40/40",
+                              objectFit: "cover",
+                            }}
+                            width="40"
+                          />
+                          <div className="text-lg">{source.name}</div>
+                        </div>
+
+                        <button
+                          className="aspect-square p-2"
+                          onClick={() => deleteSource(source)}
+                        >
+                          <DeleteIcon />
+                        </button>
+                      </div>
                     </div>
+                  ))
+                ) : (
+                  <div className="text-neutral-400">
+                    Sources will appear here
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>
-          <div className="h-full overflow-y-scroll rounded-[.5em] bg-stone-200 p-4 ">
-            <div className="font-normal">
-              {summary ? summary : "Summary will appear here..."}
-            </div>
+          <div className="h-96 min-h-64 rounded-[.5em] bg-stone-200 p-4 md:h-full ">
+            {summary ? (
+              <div className="font-normal">{summary}</div>
+            ) : (
+              <div className="text-neutral-400">Summary will appear here</div>
+            )}
           </div>
         </div>
       </div>
@@ -222,7 +213,7 @@ function DeleteIcon({ className }: DeleteIconProps) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >

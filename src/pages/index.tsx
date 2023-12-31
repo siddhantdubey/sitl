@@ -12,7 +12,7 @@ export type Sources = Source[];
 
 export default function Home() {
   const [currentSource, setCurrentSource] = useState<string>("twitter");
-  const [modelType, setModelType] = useState<string>("gpt-4");
+  const [modelType, setModelType] = useState<string>("gpt-3.5-turbo");
 
   const [sources, setSources] = useState<Sources>([]);
   const [summary, setSummary] = useState<string>("");
@@ -81,7 +81,7 @@ export default function Home() {
       }
     }
     const response = await fetch(
-      `/api/getSummary?prompt=${prompt}&openAIKey=${openAIKey}`,
+      `/api/getSummary?prompt=${prompt}&openAIKey=${openAIKey}&modelType=${modelType}`,
     );
     const data = await response.json();
     setSummary(data.summary);
